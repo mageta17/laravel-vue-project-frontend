@@ -7,7 +7,7 @@
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
     <strong style="background-color: red; padding: 10px; color: #fff">
-      Here is additional content for testing......!!!!!
+      Here is additional content for testing..
     </strong>
     <h3>Installed CLI Plugins</h3>
     <ul>

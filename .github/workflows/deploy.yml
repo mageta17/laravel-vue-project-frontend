@@ -38,9 +38,4 @@ jobs:
   
           # Copy build files to the host machine (not inside the container)
           scp -i private_key -o StrictHostKeyChecking=no -r dist/* mageta@41.220.139.164:/home/mageta/projects/laravel-vue-project/frontend/dist
-  
-          # Restart the Docker container to serve new files
-          ssh -i private_key -o StrictHostKeyChecking=no mageta@41.220.139.164 << 'EOF'
-            cd /home/mageta/projects/laravel-vue-project
-            docker-compose restart node
-          EOF
+

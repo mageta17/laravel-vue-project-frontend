@@ -1,0 +1,37 @@
+name: Deploy Vue.js App to Docker
+
+on:
+  push:
+    branches:
+      - main  # Trigger the action on push to the 'main' branch
+  pull_request:
+    branches:
+      - main  # Optional: Trigger on pull requests to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Use the appropriate Node.js version for your project
+
+    - name: Install dependencies
+      run: |
+        npm install  # or yarn install if you use Yarn
+
+    - name: Build the project
+      run: |
+        npm run build  # or yarn build if you use Yarn
+
+    - name: Deploy to Docker container on server
+      run: |
+        scp -r dist/* user@your-production-server:/path/to/docker/container/your-app/dist  # Copy build files to Docker container
+        ssh -o StrictHostKeyChecking=no user@your-production-server "docker-compose -f /path/to/docker-compose.yml restart your-container-name"  # Restart the container to serve the new files
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}  # Use the SSH key for authentication

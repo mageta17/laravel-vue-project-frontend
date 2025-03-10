@@ -6,7 +6,9 @@
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
     </p>
-    <strong style="background-color: red; padding: 10px; color: #fff">Here is additional content for testing</strong>
+    <strong style="background-color: red; padding: 10px; color: #fff">
+      Here is additional content for testing..!
+    </strong>
     <h3>Installed CLI Plugins</h3>
     <ul>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank"

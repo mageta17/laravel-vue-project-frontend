@@ -29,13 +29,15 @@ jobs:
       run: |
         npm run build  # or yarn build if you use Yarn
 
-        - name: Deploy to Docker container on server
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |
-          # Create SSH Key and Connect to Server
-          echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
-  
-          # Copy build files to the host machine (not inside the container)
-          scp -i private_key -o StrictHostKeyChecking=no -r dist/* mageta@41.220.139.164:/home/mageta/projects/laravel-vue-project/frontend/dist
+    - name: Deploy to Docker container on server
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        # Create SSH Key and Connect to Server
+        echo "$SSH_PRIVATE_KEY" > private_key && chmod 600 private_key
 
+        # Copy build files to the host machine (not inside the container)
+        scp -i private_key -o StrictHostKeyChecking=no -r dist/* mageta@41.220.139.164:/home/mageta/projects/laravel-vue-project/frontend/dist
+
+        # Cleanup SSH key
+        rm -f private_key
